@@ -6,7 +6,9 @@ import { SignJWT } from "jose";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-const secret = new TextEncoder().encode(process.env.JWT_SECRET || "default-secret-key");
+const secret = new TextEncoder().encode(
+  process.env.JWT_SECRET || "default-secret-key"
+);
 
 export async function register(prevState: any, formData: FormData) {
   try {
@@ -17,19 +19,19 @@ export async function register(prevState: any, formData: FormData) {
     if (!email || !password || !name) {
       return {
         status: "error",
-        message: "Tous les champs sont requis"
+        message: "Tous les champs sont requis",
       };
     }
 
     // Vérifier si l'email existe déjà
     const existingAdmin = await db.admin.findUnique({
-      where: { email }
+      where: { email },
     });
 
     if (existingAdmin) {
       return {
         status: "error",
-        message: "Cet email est déjà utilisé"
+        message: "Cet email est déjà utilisé",
       };
     }
 
@@ -42,23 +44,22 @@ export async function register(prevState: any, formData: FormData) {
         email,
         password: hashedPassword,
         name,
-      }
+      },
     });
 
     return {
       status: "success",
-      message: "Compte créé avec succès"
+      message: "Compte créé avec succès",
     };
   } catch (error) {
     console.error("REGISTER_ERROR:", error);
     return {
       status: "error",
-      message: "Une erreur s'est produite lors de l'inscription"
+      message: "Une erreur s'est produite lors de l'inscription",
     };
   }
 }
 // Secret JWT
- 
 
 export async function login(formData: FormData) {
   try {
@@ -104,8 +105,6 @@ export async function login(formData: FormData) {
     return { status: "error", message: "Une erreur s'est produite." };
   }
 }
-
-
 
 export async function logout() {
   cookies().delete("auth-token");
