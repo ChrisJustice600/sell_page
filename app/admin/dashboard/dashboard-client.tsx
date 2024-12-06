@@ -1,7 +1,6 @@
 "use client";
 
 import { Admin, Registration } from "@prisma/client";
-import { useState } from "react";
 
 type DashboardClientProps = {
   initialRegistrations: Registration[];
@@ -12,9 +11,6 @@ export default function DashboardClient({
   initialRegistrations,
   admins,
 }: DashboardClientProps) {
-  const [registrations, setRegistrations] =
-    useState<Registration[]>(initialRegistrations);
-
   return (
     <div>
       <h1 className="text-2xl font-bold mb-4">Dashboard</h1>
@@ -24,7 +20,7 @@ export default function DashboardClient({
         <div className="p-4 bg-white shadow rounded-lg">
           <h2 className="text-xl font-semibold">Total Registrations</h2>
           <p className="text-3xl font-bold text-blue-600">
-            {registrations.length}
+            {initialRegistrations.length}
           </p>
         </div>
         <div className="p-4 bg-white shadow rounded-lg">
@@ -54,7 +50,7 @@ export default function DashboardClient({
             </tr>
           </thead>
           <tbody>
-            {registrations.map((reg) => (
+            {initialRegistrations.map((reg) => (
               <tr key={reg.id} className="border-b">
                 <td className="px-4 py-2">{reg.fullName}</td>
                 <td className="px-4 py-2">{reg.whatsapp}</td>
