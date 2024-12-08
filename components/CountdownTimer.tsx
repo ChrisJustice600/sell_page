@@ -12,8 +12,8 @@ interface TimeLeft {
 export default function CountdownTimer() {
   const calculateTimeLeft = (): TimeLeft => {
     const now = new Date();
-    // Ajouter 3 jours à partir de maintenant
-    const targetDate = new Date(now.getTime() + (3 * 24 * 60 * 60 * 1000));
+    // Date cible fixe : 13 décembre 2024
+    const targetDate = new Date("2024-12-13T00:00:00");
     const difference = targetDate.getTime() - now.getTime();
 
     if (difference <= 0) {
@@ -37,7 +37,8 @@ export default function CountdownTimer() {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setTimeLeft(calculateTimeLeft());
+      const newTimeLeft = calculateTimeLeft();
+      setTimeLeft(newTimeLeft);
     }, 1000);
 
     return () => clearInterval(timer);
@@ -55,21 +56,21 @@ export default function CountdownTimer() {
         </div>
         <div className="text-sm text-gray-400">Jours</div>
       </div>
-      
+
       <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-4 rounded-lg shadow-xl border border-gray-700">
         <div className="text-3xl md:text-4xl font-bold text-white mb-1">
           {formatNumber(timeLeft.hours)}
         </div>
         <div className="text-sm text-gray-400">Heures</div>
       </div>
-      
+
       <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-4 rounded-lg shadow-xl border border-gray-700">
         <div className="text-3xl md:text-4xl font-bold text-white mb-1">
           {formatNumber(timeLeft.minutes)}
         </div>
         <div className="text-sm text-gray-400">Minutes</div>
       </div>
-      
+
       <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-4 rounded-lg shadow-xl border border-gray-700">
         <div className="text-3xl md:text-4xl font-bold text-white mb-1">
           {formatNumber(timeLeft.seconds)}
