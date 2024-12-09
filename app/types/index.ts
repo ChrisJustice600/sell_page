@@ -1,12 +1,3 @@
-export interface Lead {
-  id: string;
-  fullName: string;
-  email: string;
-  phone: string;
-  createdAt: Date;
-  status: 'NEW' | 'CONTACTED' | 'CONVERTED' | 'LOST';
-}
-
 export interface Registration {
   id: string;
   fullName: string;
@@ -21,4 +12,8 @@ export interface Admin {
   email: string;
   name: string;
   role: 'ADMIN' | 'SUPER_ADMIN';
+}
+
+export interface AdminCreate extends Omit<Admin, 'id'> {
+  password: string;
 }
