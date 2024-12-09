@@ -249,7 +249,7 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
               >
-                <div className="bg-gradient-to-br from-gray-800/90 to-gray-900/90 rounded-2xl shadow-2xl p-8 border border-gray-700">
+                <div id="registration-form" className="bg-gradient-to-br from-gray-800/90 to-gray-900/90 rounded-2xl shadow-2xl p-8 border border-gray-700">
                   <h3 className="text-2xl font-bold text-white mb-2 text-center">
                     Inscrivez vous maintenant
                   </h3>
