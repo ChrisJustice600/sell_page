@@ -110,7 +110,7 @@ export default function RegistrationForm() {
   }
 
   if (isSuccess) {
-    return <SuccessMessage />;
+    return <SuccessMessage name={formData.fullName} />;
   }
 
   return (
